@@ -262,6 +262,88 @@ module Watir
     end
 
     #
+    #Returns current horizontal (x) content offset
+    #
+
+    def x
+      self.execute_script("javascript:return window.pageXOffset")
+    end
+    
+    # 
+    #Returns current vertical (Y) content offset
+    #
+    
+    def y
+      self.execute_script("javascript:return window.pageYOffset")
+    end
+
+    #
+    #Scrolls the content of the loaded document using JavaScript `scrollTo` method. It scrolls into given point no matter where it was.
+    #
+    #@param [Integer] x horizontal dimension
+    #@param [Integer] y vertical dimension
+    #
+    
+    def scroll_to(x, y)
+      self.execute_script("javascript:window.scrollTo(#{x},#{y})")
+    end
+    
+    #
+    #Scrolls the content of the loaded document by number of pixels in given dimensions
+    #
+    #@example
+    #   browser.scroll 50, 60
+    #
+    #@param [Integer] x number of pixesls to scroll by in horizontal dimension
+    #@param [Integer] y number of pixesls to scroll by in vertical dimension
+    #
+    
+    def scroll(x, y)
+      self.scroll_to(self.x + x.to_i, self.y + y.to_i)
+    end
+
+    #
+    #Scrolls the content of the loaded document to the right by number of given pixels. It is a shortcut for `scroll(x, 0)`
+    #
+    #@param [Integer] n number of pixels to scroll by to the right
+    #
+    
+    def scroll_right(n)
+      self.scroll(n, 0)
+    end
+
+    #
+    #Scrolls the content of the loaded document to the left by number of given pixels. It is a shortcut for `scroll(-x, 0)`
+    #
+    #@param [Integer] n number of pixels to scroll by to the left
+    #
+
+    def scroll_left(n)
+      self.scroll(-n, 0)
+    end
+
+    #
+    #Scrolls the content of the loaded document down by number of given pixels. It is a shortcut for `scroll(0, y)`
+    #
+    #@param [Integer] n number of pixels to scroll by downwards
+    #
+    
+    def scroll_down(n)
+      self.scroll(0, n)
+    end
+
+    #
+    #Scrolls the content of the loaded document down by number of given pixels. It is a shortcut for `scroll(0, -y)`
+    #
+    #@param [Integer] n number of pixels to scroll by upwards
+    #
+    
+    def scroll_up(n)
+      self.scroll(0, -n)
+    end
+
+
+    #
     # Sends sequence of keystrokes to currently active element.
     #
     # @example
