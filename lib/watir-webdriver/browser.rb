@@ -342,6 +342,20 @@ module Watir
       self.scroll(0, -n)
     end
 
+    #
+    #Opens new window within collection of self.windows. First, default window has index = 0
+    #
+    #@example
+    #   # Focus on the first window
+    #   browser.window(:index => 0).use
+    #  
+    #   # Focus on the second window
+    #   browser.window(:index => 1).use
+    #
+    
+    def window_open(url)
+      self.execute_script("window.open('#{url}','_blank')")
+    end
 
     #
     # Sends sequence of keystrokes to currently active element.
